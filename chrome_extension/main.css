@@ -1,0 +1,15 @@
+.parent {
+  display: flex;
+  justify-content: space-between;
+}
+
+#controller {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  opacity: 0.5;
+}
+
+.parent:hover #controller {
+  opacity: 1;
+}

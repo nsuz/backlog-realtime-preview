@@ -1,0 +1,22 @@
+[tasks.build-wasm]
+description = "Build Wasm for Chrome Extension."
+workspace = false
+command = "wasm-pack"
+args = ["build", "--target", "web", "--out-dir", "chrome_extension/pkg"]
+
+[tasks.replace-url]
+description = "Replace URL for Chrome Extension."
+workspace = false
+script = '''
+sed -I "" "s/URL('\(.*\)'/URL(chrome.runtime.getURL('pkg\/\1')/g" chrome_extension/pkg/backlog_realtime_preview.js
+'''
+
+[tasks.run-npm-tasks]
+description = "Build chrome extension."
+workspace = false
+script = '''
+cd chrome_extension && npm install && npm run build
+'''
+
+[tasks.build-chrome-extension]
+run_task = {name = ["build-wasm", "replace-url", "run-npm-tasks"]}

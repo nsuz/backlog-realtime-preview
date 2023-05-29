@@ -1,0 +1,14 @@
+#preview {
+  width: 50%;
+  word-break: break-word;
+  appearance: none;
+  padding: 8px 8px 4px;
+  background-color: white;
+  border-left: solid 1px #cccccc;
+}
+
+.switch {
+  padding: 8px;
+  background-color: #f6f6f6;
+  border-radius: 4px;
+}
