@@ -50,14 +50,14 @@ pub fn parse(text: &str) -> String {
     let mut code_stash: VecDeque<String> = VecDeque::from([]);
     const CODE_PLACEHOLDER: &str = "gPvErkJM67vL"; // This string has no meaning.
 
+    let text = html_escape(text);
+
     // Stash code blocks.
-    let text = code_re.replace_all(text, |cap: &Captures| {
+    let text = code_re.replace_all(&text, |cap: &Captures| {
         let code = format!("<pre class=\"loom_code loom_code_cs\">{}</pre>", &cap[1]);
         code_stash.push_back(code);
         CODE_PLACEHOLDER
     });
-
-    let text = html_escape(&text);
 
     for line in text.lines() {
         let line = line.to_string();
